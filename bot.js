@@ -1,15 +1,15 @@
 var Discord = require ('discord.io');
-var logger= require('winston');
+//var logger= require('winston');
 var auth = require('./auth.json');
 
 var fs = require('fs');
 
-logger.remove(logger.transports.Console);
-logger.add(new logger.transports.Console, {
-	colorize: true
-});
+// logger.remove(logger.transports.Console);
+// logger.add(new logger.transports.Console, {
+// 	colorize: true
+// });
 
-logger.level = 'debug';
+// logger.level = 'debug';
 
 var bot = new Discord.Client({
 	token: auth.token,
@@ -17,9 +17,9 @@ var bot = new Discord.Client({
 });
 
 bot.on('ready', function (event) {
-	logger.info('Connected');
-	logger.info('Logged in as: ');
-	logger.info(bot.username + ' - (' + bot.id + ')');
+	console.log('Connected');
+	console.log('Logged in as: ');
+	console.log(bot.username + ' - (' + bot.id + ')');
 });
  
 bot.on('message', function(user, userId, channelId, message, event) {
