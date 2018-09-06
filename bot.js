@@ -1,6 +1,7 @@
 var Discord = require ('discord.io');
 //var logger= require('winston');
 var auth = require('./auth.json');
+var googleTTS = require('google-tts-api');
 
 var fs = require('fs');
 
@@ -29,6 +30,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 	if(message.substring(0,1) == '!') {
 		var args = message.substring(1).split(' ');
 		var cmd = args[0];
+		var tts = "";
 
 		args = args.splice(1);
 
@@ -307,6 +309,39 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						});
 					}
 					break;
+				case 'tts':
+					args.forEach(function(ele) {
+						if(ele==cmd)
+							return;
+						tts += ele+' ';
+					});
+
+					googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+					.then(function (url) {
+					  console.log(url); // https://translate.google.com/translate_tts?...
+						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+							if(error)
+								console.log(error);
+							else {
+								bot.getAudioContext(voiceChannelId, function(error, stream) {
+									if(error)
+										console.log(error);
+									else {
+										fs.createReadStream(url).pipe(stream, {end: false});
+
+										stream.on('done', function() {
+											bot.leaveVoiceChannel(voiceChannelId, function(){
+												console.log('Done!');
+											});
+										})
+									}
+								});
+							}
+						});
+					})
+					.catch(function (err) {
+					  console.error(err.stack);
+					});
 				case 'help':
 					bot.sendMessage({
 						to: channelId,
