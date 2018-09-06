@@ -345,6 +345,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 											console.log(error);
 										else {
 											var val = Math.floor(1000 + Math.random() * 9000);
+											console.log("lund chuslo frans : " + url);
 											request
 											  .get(url)
 											  .on('error', function(err) {
