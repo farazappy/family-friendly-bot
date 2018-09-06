@@ -37,7 +37,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 
 		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
 
-		if(userId == '202744505114296331' || userId == '327365815785619457') {
+		if(userId == '202744505114296331') {
 			bot.sendMessage({
 				to: channelId,
 				message: user + ' sorry I don\'t serve Christian lovers'
@@ -322,26 +322,20 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					  //console.log(url); // https://translate.google.com/translate_tts?...
 						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
 							if(error)
-								console.log(error);
+								console.error(error);
 							else {
 								bot.getAudioContext(voiceChannelId, function(error, stream) {
 									if(error)
-										console.log(error);
+										console.error(error);
 									else {
 										//fs.createReadStream(url).pipe(stream, {end: false});
 
-										request
-											.get(url)
-											.on('error', function(err) {
-												bot.leaveVoiceChannel(voiceChannelId, function(){
-													console.log(err);
-												});
-											})
+										request.get(url)
 											.pipe(stream, {end: false});
 
 										stream.on('done', function() {
 											bot.leaveVoiceChannel(voiceChannelId, function(){
-												console.log('Done!');
+												console.error('Done!');
 											});
 										})
 									}
@@ -354,8 +348,8 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					});
 					break;
 				case 'leave':
-					bot.leaveVoiceChannel(voiceChannelId, function() {
-						console.log('Done');
+					bot.leaveVoiceChannel(voiceChannelId, function(){
+						console.error('Done!');
 					});
 					break;
 				case 'help':
