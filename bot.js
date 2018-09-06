@@ -4,6 +4,7 @@ var auth = require('./auth.json');
 var googleTTS = require('google-tts-api');
 
 var fs = require('fs');
+var https = require('https');
 var request = require('request');
 
 // logger.remove(logger.transports.Console);
@@ -325,7 +326,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						tts += ele+' ';
 					});
 
-					googleTTS('hello', 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+					googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
 					.then(function (url) {
 					  console.log(url); // https://translate.google.com/translate_tts?...
 
@@ -343,7 +344,6 @@ bot.on('message', function(user, userId, channelId, message, event) {
 										if(error)
 											console.log(error);
 										else {
-
 											request
 											  .get(url)
 											  .on('error', function(err) {
@@ -351,7 +351,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 											    console.log(err);
 											  })
 											  .pipe(stream, {end: false});
-											  
+
 											stream.on('done', function() {
 												bot.leaveVoiceChannel(voiceChannelId, function(){
 													console.log('Done!');
