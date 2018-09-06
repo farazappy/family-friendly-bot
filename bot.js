@@ -370,11 +370,21 @@ bot.on('message', function(user, userId, channelId, message, event) {
 											//   })
 											//   .pipe(stream, {end: false});
 
-											fs.createWriteStream(response.audioContent).pipe(stream, {end: false});
+											//fs.createWriteStream(response.audioContent).pipe(stream, {end: false});
+
+											 // Write the binary audio content to a local file
+											  fs.writeFile('output.mp3', response.audioContent, 'binary', err => {
+											    if (err) {
+											      console.error('ERROR:', err);
+											      return;
+											    }
+											    console.log('Audio content written to file: output.mp3');
+											  });
+											fs.createReadStream('output.mp3').pipe(stream, {end: false});
 
 											stream.on('done', function() {
 												bot.leaveVoiceChannel(voiceChannelId, function(){
-													//fs.unlink(val+'.mp3');
+													fs.unlink('output.mp3');
 													console.log('Done');
 												});
 											});
