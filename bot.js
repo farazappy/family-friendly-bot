@@ -303,7 +303,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 											bot.leaveVoiceChannel(voiceChannelId, function(){
 												console.log('Done!');
 											});
-										})
+										});
 									}
 								});
 							}
@@ -331,13 +331,33 @@ bot.on('message', function(user, userId, channelId, message, event) {
 									if(error)
 										console.log(error);
 									else {
-										fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+
+										args.forEach(function(ele) {
+											if(ele==cmd)
+												return;
+											tts += ele+' ';
+										});
+
+										googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+										.then(function (url) {
+										  console.log(url); // https://translate.google.com/translate_tts?...
+
+											request
+											  .get('http://foo.com/bar.mp3')
+											  .on('error', function(err) {
+											    // handle error
+											  })
+											  .pipe(stream, {end: false});
+										})
+										.catch(function (err) {
+										  console.error(err.stack);
+										});
 
 										stream.on('done', function() {
 											bot.leaveVoiceChannel(voiceChannelId, function(){
 												console.log('Done!');
 											});
-										})
+										});
 									}
 								});
 							}
