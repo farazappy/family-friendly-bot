@@ -333,7 +333,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 
 									})
 									.catch(function (err) {
-									  console.error(err.stack);
+									  console.log(err.stack);
 									});
 
 									stream.on('done', function() {
