@@ -346,7 +346,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 										else {
 											var val = Math.floor(1000 + Math.random() * 9000);
 											request
-											  .get(url)
+											  .get('https://www.random.org/audio-noise/?channels=2&volume=20&rate=16000&size=8&date=2018-09-06&format=wav&deliver=browser')
 											  .on('error', function(err) {
 											    // handle error
 											    console.log(err);
