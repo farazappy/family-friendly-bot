@@ -352,7 +352,6 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					.catch(function (err) {
 					  console.error(err.stack);
 					});
-					break;
 				case 'help':
 					bot.sendMessage({
 						to: channelId,
