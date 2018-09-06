@@ -310,47 +310,39 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						});
 					}
 					break;
-				case 'tts':
-					bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-						if(error)
-							console.log(error);
-						else {
-							bot.getAudioContext(voiceChannelId, function(error, stream) {
-								if(error)
-									console.log(error);
-								else {
-									args.forEach(function(ele) {
-										if(ele==cmd)
-											return;
-										tts += ele+' ';
-									});
-
-									googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
-									.then(function (url) {
-									  console.error(url); // https://translate.google.com/translate_tts?...
-
-									  request.get(url).on('error', function(err){console.log(err)}).pipe(stream, {end: false});
-
-									})
-									.catch(function (err) {
-									  console.log(err.stack);
-									});
-
-									stream.on('done', function() {
-										bot.leaveVoiceChannel(voiceChannelId, function(err) {
-											console.log('Done!');
-										});
-									});
-								}
-							});
-						}
-					});
-					break;
 				case 'help':
 					bot.sendMessage({
 						to: channelId,
 						message: 'pehle aadhar link karo fir use karo !hi !jhola !pmgm !achha !waah !aslimeme !hypocrisy !gunehgaar !thankyou'
 					});
+					break;
+				case 'tts':
+					if(!voiceChannelId)
+						bot.sendMessage({
+							to: channelId,
+							message: user + ' behenchod pehle voice channel join kar!'
+						});
+					else {
+						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+							if(error)
+								console.log(error);
+							else {
+								bot.getAudioContext(voiceChannelId, function(error, stream) {
+									if(error)
+										console.log(error);
+									else {
+										fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+
+										stream.on('done', function() {
+											bot.leaveVoiceChannel(voiceChannelId, function(){
+												console.log('Done!');
+											});
+										})
+									}
+								});
+							}
+						});
+					}
 					break;
 				default:
 					bot.sendMessage({
