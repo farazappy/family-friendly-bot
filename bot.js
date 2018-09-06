@@ -356,7 +356,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 				case 'help':
 					bot.sendMessage({
 						to: channelId,
-						message: 'pehle aadhar link karo fir use karo !hi !jhola !pmgm !achha !waah !aslimeme !hypocrisy !gunehgaar !thankyou'
+						message: 'pehle aadhar link karo fir use karo !hi !jhola !pmgm !achha !waah !aslimeme !hypocrisy !gunehgaar !thankyou | to use tts -> !tts message here'
 					});
 					break;
 				default:
