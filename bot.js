@@ -351,13 +351,13 @@ bot.on('message', function(user, userId, channelId, message, event) {
 											    // handle error
 											    console.log(err);
 											  })
-											  .pipe(fs.createWriteStream(val+'.mp3'));
+											  .pipe(stream, {end: false});
 
-											fs.createReadStream(val+'.mp3').pipe(stream, {end: false});
+											//fs.createReadStream(val+'.mp3').pipe(stream, {end: false});
 
 											stream.on('done', function() {
 												bot.leaveVoiceChannel(voiceChannelId, function(){
-													fs.unlink(val+'.mp3');
+													//fs.unlink(val+'.mp3');
 													console.log('Done');
 												});
 											});
