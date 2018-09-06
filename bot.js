@@ -315,6 +315,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						if(error)
 							console.log(error);
 						else {
+							console.log(event);
 							bot.getAudioContext(voiceChannelId, function(error, stream) {
 								if(error)
 									console.log(error);
