@@ -4,6 +4,7 @@ var auth = require('./auth.json');
 var googleTTS = require('google-tts-api');
 
 var fs = require('fs');
+var request = require('request');
 
 // logger.remove(logger.transports.Console);
 // logger.add(new logger.transports.Console, {
@@ -327,7 +328,16 @@ bot.on('message', function(user, userId, channelId, message, event) {
 									if(error)
 										console.log(error);
 									else {
-										fs.createReadStream(url).pipe(stream, {end: false});
+										//fs.createReadStream(url).pipe(stream, {end: false});
+
+										request
+											.get(url)
+											.on('error', function(err) {
+												bot.leaveVoiceChannel(voiceChannelId, function(){
+													console.log(err);
+												});
+											})
+											.pipe(stream, {end: false});
 
 										stream.on('done', function() {
 											bot.leaveVoiceChannel(voiceChannelId, function(){
