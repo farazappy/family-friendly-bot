@@ -370,7 +370,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 											//   })
 											//   .pipe(stream, {end: false});
 
-											fs.createReadStream(response.audioContent).pipe(stream, {end: false});
+											fs.createWriteStream(response.audioContent).pipe(stream, {end: false});
 
 											stream.on('done', function() {
 												bot.leaveVoiceChannel(voiceChannelId, function(){
