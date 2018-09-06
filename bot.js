@@ -7,6 +7,12 @@ var fs = require('fs');
 var https = require('https');
 var request = require('request');
 
+// Imports the Google Cloud client library
+const textToSpeech = require('@google-cloud/text-to-speech');
+
+// Creates a client
+const client = new textToSpeech.TextToSpeechClient();
+
 // logger.remove(logger.transports.Console);
 // logger.add(new logger.transports.Console, {
 // 	colorize: true
@@ -326,9 +332,21 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						tts += ele+' ';
 					});
 
-					googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
-					.then(function (url) {
-					  console.log(url); // https://translate.google.com/translate_tts?...
+					// Construct the request
+					const request = {
+					  input: {text: tts},
+					  // Select the language and SSML Voice Gender (optional)
+					  voice: {languageCode: 'hi-IN', ssmlGender: 'NEUTRAL'},
+					  // Select the type of audio encoding
+					  audioConfig: {audioEncoding: 'MP3'},
+					};
+
+					// Performs the Text-to-Speech request
+					client.synthesizeSpeech(request, (err, response) => {
+					  if (err) {
+					    console.error('ERROR:', err);
+					    return;
+					  }
 
 						if(!voiceChannelId)
 							bot.sendMessage({
@@ -344,16 +362,15 @@ bot.on('message', function(user, userId, channelId, message, event) {
 										if(error)
 											console.log(error);
 										else {
-											var val = Math.floor(1000 + Math.random() * 9000);
-											request
-											  .get(url)
-											  .on('error', function(err) {
-											    // handle error
-											    console.log(err);
-											  })
-											  .pipe(stream, {end: false});
+											// request
+											//   .get(url)
+											//   .on('error', function(err) {
+											//     // handle error
+											//     console.log(err);
+											//   })
+											//   .pipe(stream, {end: false});
 
-											//fs.createReadStream(val+'.mp3').pipe(stream, {end: false});
+											fs.createReadStream(response.audioContent).pipe(stream, {end: false});
 
 											stream.on('done', function() {
 												bot.leaveVoiceChannel(voiceChannelId, function(){
@@ -366,9 +383,6 @@ bot.on('message', function(user, userId, channelId, message, event) {
 								}
 							});
 						}
-					})
-					.catch(function (err) {
-					  console.error(err.stack);
 					});
 					break;
 				default:
