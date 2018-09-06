@@ -37,7 +37,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 		if(userId == '202744505114296331' || userId == '327365815785619457') {
 			bot.sendMessage({
 				to: channelId,
-				message: user + 'pehle selfie bhej!'
+				message: user + ' sorry I don\'t serve Christian lovers'
 			});
 		} else {
 
