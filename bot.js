@@ -4,6 +4,7 @@ var auth = require('./auth.json');
 var googleTTS = require('google-tts-api');
 
 var fs = require('fs');
+var request = require('request');
 
 // logger.remove(logger.transports.Console);
 // logger.add(new logger.transports.Console, {
@@ -338,8 +339,8 @@ bot.on('message', function(user, userId, channelId, message, event) {
 									stream.on('done', function() {
 										bot.leaveVoiceChannel(voiceChannelId, function(err) {
 											console.log('Done!');
-										})
-									})
+										});
+									});
 								}
 							});
 						}
