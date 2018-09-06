@@ -34,10 +34,10 @@ bot.on('message', function(user, userId, channelId, message, event) {
 
 		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
 
-		if(userId == '202744505114296331') {
+		if(userId == '202744505114296331' || userId == '327365815785619457') {
 			bot.sendMessage({
 				to: channelId,
-				message: 'Sorry ' + user + ', I won\'t serve you!'
+				message: user + 'pehle selfie bhej!'
 			});
 		} else {
 
