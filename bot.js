@@ -336,7 +336,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					const request = {
 					  input: {text: tts},
 					  // Select the language and SSML Voice Gender (optional)
-					  voice: {languageCode: 'hi-IN', ssmlGender: 'NEUTRAL'},
+					  voice: {languageCode: 'en-US', ssmlGender: 'NEUTRAL'},
 					  // Select the type of audio encoding
 					  audioConfig: {audioEncoding: 'MP3'},
 					};
