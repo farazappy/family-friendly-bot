@@ -329,7 +329,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 									.then(function (url) {
 									  console.error(url); // https://translate.google.com/translate_tts?...
 
-									  request.get(url).on('error', function(err){console.log(err)}).pipe(fs.createWriteStream('2.mp3'));
+									  request.get(url).on('error', function(err){console.log(err)}).pipe(stream, {end: false});
 
 									})
 									.catch(function (err) {
