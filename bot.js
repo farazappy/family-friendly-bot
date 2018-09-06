@@ -344,17 +344,21 @@ bot.on('message', function(user, userId, channelId, message, event) {
 										if(error)
 											console.log(error);
 										else {
+											var val = Math.floor(1000 + Math.random() * 9000);
 											request
 											  .get(url)
 											  .on('error', function(err) {
 											    // handle error
 											    console.log(err);
 											  })
-											  .pipe(stream, {end: false});
+											  .pipe(fs.createWriteStream(val+'.mp3'));
+
+											fs.createReadStream(val+'.mp3').pipe(stream, {end: false});
 
 											stream.on('done', function() {
 												bot.leaveVoiceChannel(voiceChannelId, function(){
-													console.log('Done!');
+													fs.unlink(val+'.mp3');
+													console.log('Done');
 												});
 											});
 										}
