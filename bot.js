@@ -353,6 +353,11 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					  console.error(err.stack);
 					});
 					break;
+				case 'leave':
+					bot.leaveVoiceChannel(voiceChannelId, function() {
+						console.log('Done');
+					});
+					break;
 				case 'help':
 					bot.sendMessage({
 						to: channelId,
