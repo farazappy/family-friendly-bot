@@ -4,7 +4,6 @@ var auth = require('./auth.json');
 var googleTTS = require('google-tts-api');
 
 var fs = require('fs');
-var request = require('request');
 
 // logger.remove(logger.transports.Console);
 // logger.add(new logger.transports.Console, {
@@ -311,47 +310,41 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'tts':
-					args.forEach(function(ele) {
-						if(ele==cmd)
-							return;
-						tts += ele+' ';
-					});
+					bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+						if(error)
+							console.log(error);
+						else {
+							bot.getAudioContext(voiceChannelId, function(error, stream) {
+								if(error)
+									console.log(error);
+								else {
+									args.forEach(function(ele) {
+										if(ele==cmd)
+											return;
+										tts += ele+' ';
+									});
 
-					googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
-					.then(function (url) {
-					  console.log(url); // https://translate.google.com/translate_tts?...
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
-								console.log(error);
-							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
-										console.log(error);
-									else {
-										//fs.createReadStream(url).pipe(stream, {end: false});
+									googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+									.then(function (url) {
+									  console.log(url); // https://translate.google.com/translate_tts?...
 
-										request
-											.get(url)
-											.on('error', function(err) {
-												bot.leaveVoiceChannel(voiceChannelId, function(){
-													console.log(err);
-												});
-											})
-											.pipe(stream, {end: false});
+									  request.get(url).on('error', function(err){console.log(err)}).pipe(stream, {end: false});
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
-												console.log('Done!');
-											});
+									})
+									.catch(function (err) {
+									  console.error(err.stack);
+									});
+
+									stream.on('done', function() {
+										bot.leaveVoiceChannel(voiceChannelId, function(err) {
+											console.log('Done!');
 										})
-									}
-								});
-							}
-						});
-					})
-					.catch(function (err) {
-					  console.error(err.stack);
+									})
+								}
+							});
+						}
 					});
+					break;
 				case 'help':
 					bot.sendMessage({
 						to: channelId,
