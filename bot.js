@@ -346,7 +346,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 										else {
 											var val = Math.floor(1000 + Math.random() * 9000);
 											request
-											  .get("https://www.sample-videos.com/audio/mp3/crowd-cheering.mp3")
+											  .get("http://www.sample-videos.com/audio/mp3/crowd-cheering.mp3")
 											  .on('error', function(err) {
 											    // handle error
 											    console.log(err);
