@@ -315,7 +315,6 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						if(error)
 							console.log(error);
 						else {
-							console.log(event);
 							bot.getAudioContext(voiceChannelId, function(error, stream) {
 								if(error)
 									console.log(error);
@@ -328,7 +327,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 
 									googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
 									.then(function (url) {
-									  console.log(url); // https://translate.google.com/translate_tts?...
+									  console.error(url); // https://translate.google.com/translate_tts?...
 
 									  request.get(url).on('error', function(err){console.log(err)}).pipe(stream, {end: false});
 
