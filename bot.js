@@ -37,7 +37,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 
 		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
 
-		if(userId == '202744505114296331') {
+		if(userId == '202744505114296331' || userId == '327365815785619457') {
 			bot.sendMessage({
 				to: channelId,
 				message: user + ' sorry I don\'t serve Christian lovers'
@@ -322,20 +322,26 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					  console.log(url); // https://translate.google.com/translate_tts?...
 						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
 							if(error)
-								console.error(error);
+								console.log(error);
 							else {
 								bot.getAudioContext(voiceChannelId, function(error, stream) {
 									if(error)
-										console.error(error);
+										console.log(error);
 									else {
 										//fs.createReadStream(url).pipe(stream, {end: false});
 
-										request.get(url)
+										request
+											.get(url)
+											.on('error', function(err) {
+												bot.leaveVoiceChannel(voiceChannelId, function(){
+													console.log(err);
+												});
+											})
 											.pipe(stream, {end: false});
 
 										stream.on('done', function() {
 											bot.leaveVoiceChannel(voiceChannelId, function(){
-												console.error('Done!');
+												console.log('Done!');
 											});
 										})
 									}
@@ -347,15 +353,10 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					  console.error(err.stack);
 					});
 					break;
-				case 'leave':
-					bot.leaveVoiceChannel(voiceChannelId, function(){
-						console.error('Done!');
-					});
-					break;
 				case 'help':
 					bot.sendMessage({
 						to: channelId,
-						message: 'pehle aadhar link karo fir use karo !hi !jhola !pmgm !achha !waah !aslimeme !hypocrisy !gunehgaar !thankyou | to use tts -> !tts message here'
+						message: 'pehle aadhar link karo fir use karo !hi !jhola !pmgm !achha !waah !aslimeme !hypocrisy !gunehgaar !thankyou'
 					});
 					break;
 				default:
