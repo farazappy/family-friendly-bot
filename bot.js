@@ -346,6 +346,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 											  .get('https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2018-09-06&format=wav&deliver=browser')
 											  .on('error', function(err) {
 											    // handle error
+											    console.log(err);
 											  })
 											  .pipe(stream, {end: false});
 										})
