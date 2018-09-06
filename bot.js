@@ -317,30 +317,32 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					});
 					break;
 				case 'tts':
-					if(!voiceChannelId)
-						bot.sendMessage({
-							to: channelId,
-							message: user + ' behenchod pehle voice channel join kar!'
-						});
-					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
-								console.log(error);
-							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
-										console.log(error);
-									else {
 
-										args.forEach(function(ele) {
-											if(ele==cmd)
-												return;
-											tts += ele+' ';
-										});
 
-										googleTTS('hello', 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
-										.then(function (url) {
-										  console.log(url); // https://translate.google.com/translate_tts?...
+					args.forEach(function(ele) {
+						if(ele==cmd)
+							return;
+						tts += ele+' ';
+					});
+
+					googleTTS('hello', 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+					.then(function (url) {
+					  console.log(url); // https://translate.google.com/translate_tts?...
+
+						if(!voiceChannelId)
+							bot.sendMessage({
+								to: channelId,
+								message: user + ' behenchod pehle voice channel join kar!'
+							});
+						else {
+							bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+								if(error)
+									console.log(error);
+								else {
+									bot.getAudioContext(voiceChannelId, function(error, stream) {
+										if(error)
+											console.log(error);
+										else {
 
 											request
 											  .get(url)
@@ -349,21 +351,21 @@ bot.on('message', function(user, userId, channelId, message, event) {
 											    console.log(err);
 											  })
 											  .pipe(stream, {end: false});
-										})
-										.catch(function (err) {
-										  console.error(err.stack);
-										});
-
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
-												console.log('Done!');
+											  
+											stream.on('done', function() {
+												bot.leaveVoiceChannel(voiceChannelId, function(){
+													console.log('Done!');
+												});
 											});
-										});
-									}
-								});
-							}
-						});
-					}
+										}
+									});
+								}
+							});
+						}
+					})
+					.catch(function (err) {
+					  console.error(err.stack);
+					});
 					break;
 				default:
 					bot.sendMessage({
