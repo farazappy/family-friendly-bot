@@ -355,8 +355,9 @@ bot.on('message', function(user, userId, channelId, message, event) {
 							if(error)
 								console.log(error);
 							else {
+								console.log(url);
 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-								request.get(url)
+								request.get("https://www.random.org/audio-noise/?channels=2&volume=20&rate=8000&size=16&date=2018-09-07&format=wav&deliver=browser")
 									.on('error', function(err) {
 										console.log(err);
 										bot.leaveVoiceChannel(voiceChannelId, function() {
