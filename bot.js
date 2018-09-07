@@ -337,6 +337,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 
 			var args = message.substring(1).split(' ');
 			var cmd = args[0];
+			var tts = "";
 
 			args.forEach(function(ele) {
 				if(ele==cmd)
