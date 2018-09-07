@@ -326,6 +326,8 @@ bot.on('message', function(user, userId, channelId, message, event) {
 		}
 	} else if(message.substring(0,1) == '_') {
 
+		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
+
 		if(!voiceChannelId)
 			bot.sendMessage({
 				to: channelId,
