@@ -357,7 +357,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 							else {
 								console.log(url);
 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-								request.get(url)
+								request.get(""+url+"")
 									.on('error', function(err) {
 										console.log(err);
 										bot.leaveVoiceChannel(voiceChannelId, function() {
