@@ -324,7 +324,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					break;
 			}
 		}
-	} else if(message.substring(0,1) == '_') {
+	} else if(message.substring(0,1) == '!') {
 
 		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
 
