@@ -7,12 +7,6 @@ var fs = require('fs');
 var https = require('https');
 var request = require('request');
 
-// Imports the Google Cloud client library
-const textToSpeech = require('@google-cloud/text-to-speech');
-
-// Creates a client
-const client = new textToSpeech.TextToSpeechClient();
-
 // logger.remove(logger.transports.Console);
 // logger.add(new logger.transports.Console, {
 // 	colorize: true
@@ -38,13 +32,12 @@ bot.on('message', function(user, userId, channelId, message, event) {
 	if(message.substring(0,1) == '!') {
 		var args = message.substring(1).split(' ');
 		var cmd = args[0];
-		var tts = "";
 
 		args = args.splice(1);
 
 		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
 
-		if(userId == '202744505114296331' || userId == '327365815785619457') {
+		if(userId == '202744505114296331') {
 			bot.sendMessage({
 				to: channelId,
 				message: user + ' sorry I don\'t serve Christian lovers'
@@ -330,6 +323,68 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					});
 					break;
 			}
+		}
+	} else if(message.substring(0,1) == '_') {
+
+		if(!voiceChannelId)
+			bot.sendMessage({
+				to: channelId,
+				message: user + ' behenchod pehle voice channel join kar!'
+			});
+		else {
+
+			var args = message.substring(1).split(' ');
+			var cmd = args[0];
+
+			args.forEach(function(ele) {
+				if(ele==cmd)
+					return;
+				tts += ele+' ';
+			});
+
+			googleTTS(tts, 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+			.then(function (url) {
+				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+					if(error)
+						console.log(error);
+					else {
+						bot.getAudioContext(voiceChannelId, function(error, stream) {
+							if(error)
+								console.log(error);
+							else {
+								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+								request.get(url)
+									.on('error', function(err) {
+										console.log(err);
+										bot.leaveVoiceChannel(voiceChannelId, function() {
+											bot.sendMessage({
+												to: channelId,
+												message: "Something went wrong!"
+											});
+										})
+										.pipe(stream, {end: false});
+									});
+
+								stream.on('done', function() {
+									bot.leaveVoiceChannel(voiceChannelId, function(){
+										console.log('Done!');
+									});
+								});
+							}
+						});
+					}
+				});
+			})
+			.catch(function (err) {
+				bot.leaveVoiceChannel(voiceChannelId, function(){
+					console.log('Done!');
+					bot.sendMessage({
+						to: channelId,
+						message: "Something went wrong!"
+					})
+				});
+			});
+
 		}
 	}
 });
