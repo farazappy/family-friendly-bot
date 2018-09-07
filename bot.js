@@ -364,9 +364,9 @@ bot.on('message', function(user, userId, channelId, message, event) {
 												to: channelId,
 												message: "Something went wrong!"
 											});
-										})
-										.pipe(stream, {end: false});
-									});
+										});
+									})
+									.pipe(stream, {end: false});
 
 								stream.on('done', function() {
 									bot.leaveVoiceChannel(voiceChannelId, function(){
