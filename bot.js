@@ -361,7 +361,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 								console.log(error);
 								bot.sendMessage({
 									to: channelId,
-									message: "Something went wrong!"
+									message: "Something went wrong! | " + error
 								});
 							}
 							else {
