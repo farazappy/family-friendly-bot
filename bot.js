@@ -345,7 +345,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 				tts += ele+' ';
 			});
 
-			googleTTS(tts, 'mr-IN', 1)   // speed normal = 1 (default), slow = 0.24
+			googleTTS(tts, 'hy-AM', 1)   // speed normal = 1 (default), slow = 0.24
 			.then(function (url) {
 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
 					if(error)
