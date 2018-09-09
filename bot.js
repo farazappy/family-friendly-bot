@@ -390,12 +390,13 @@ bot.on('message', function(user, userId, channelId, message, event) {
 				});
 			})
 			.catch(function (err) {
+				console.log(err);
 				bot.leaveVoiceChannel(voiceChannelId, function(){
 					console.log('Done!');
 					bot.sendMessage({
 						to: channelId,
 						message: "Something went wrong!"
-					})
+					});
 				});
 			});
 
