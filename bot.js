@@ -398,6 +398,10 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						message: "Something went wrong!"
 					});
 				});
+				bot.sendMessage({
+					to: channelId,
+					message: "Something went wrong!"
+				});
 			});
 
 		}
