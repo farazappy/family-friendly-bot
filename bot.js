@@ -348,8 +348,13 @@ bot.on('message', function(user, userId, channelId, message, event) {
 			googleTTS(tts, 'hy-AM', 1)   // speed normal = 1 (default), slow = 0.24
 			.then(function (url) {
 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-					if(error)
+					if(error){
 						console.log(error);
+						bot.sendMessage({
+							to: channelId,
+							message: "Something went wrong!"
+						});
+					}
 					else {
 						bot.getAudioContext(voiceChannelId, function(error, stream) {
 							if(error) {
