@@ -37,10 +37,10 @@ bot.on('message', function(user, userId, channelId, message, event) {
 
 		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
 
-		if(userId == '202744505114296331') {
+		if(userId == '283941878334750721') {
 			bot.sendMessage({
 				to: channelId,
-				message: user + ' sorry I don\'t serve Christian lovers'
+				message: user + ' sorry I don\'t serve Christians'
 			});
 		} else {
 
@@ -352,8 +352,13 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						console.log(error);
 					else {
 						bot.getAudioContext(voiceChannelId, function(error, stream) {
-							if(error)
+							if(error) {
 								console.log(error);
+								bot.sendMessage({
+									to: channelId,
+									message: "Something went wrong!"
+								});
+							}
 							else {
 								console.log(url);
 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
