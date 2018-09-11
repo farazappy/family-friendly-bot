@@ -458,8 +458,7 @@ bot.on('voiceStateUpdate', function() {
 					console.log('Done!');
 				});
 			});
-	} else {
+	} else if(appy.voice_channel_id == null) {
 		alreadyDone = false;
 	}
-	
 });
