@@ -472,7 +472,7 @@ bot.on('voiceStateUpdate', function() {
 	var appyId = '327365815785619457';
 	var appy = bot.servers[serverId].members[appyId];
 
-	if(appy.voice_channel_id != null && alreadyDone != true) {
+	if(appy.voice_channel_id != null && alreadyDoneGagan != true) {
 		var voiceChannelId = appy.voice_channel_id;
 			googleTTS("randi aagaya ab game throw hoga", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
 			.then(function (url) {
@@ -525,7 +525,7 @@ bot.on('voiceStateUpdate', function() {
 	var appyId = '202035944260370441';
 	var appy = bot.servers[serverId].members[appyId];
 
-	if(appy.voice_channel_id != null && alreadyDone != true) {
+	if(appy.voice_channel_id != null && alreadyDoneRaj != true) {
 		var voiceChannelId = appy.voice_channel_id;
 			googleTTS("are chakka aagaya ab gay giri karega", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
 			.then(function (url) {
