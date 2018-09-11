@@ -527,7 +527,7 @@ bot.on('voiceStateUpdate', function() {
 
 	if(appy.voice_channel_id != null && alreadyDoneRaj != true) {
 		var voiceChannelId = appy.voice_channel_id;
-			googleTTS("are chakka aagaya ab gay giri karega", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+			googleTTS("Hello guys, My name is Raj Roongta, me sabki gaand soongta", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
 			.then(function (url) {
 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
 					if(error){
