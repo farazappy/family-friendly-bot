@@ -8,6 +8,7 @@ var https = require('https');
 var request = require('request');
 
 var alreadyDone = false;
+var alreadyDoneGagan = false;
 
 // logger.remove(logger.transports.Console);
 // logger.add(new logger.transports.Console, {
@@ -460,5 +461,58 @@ bot.on('voiceStateUpdate', function() {
 			});
 	} else if(appy.voice_channel_id == null) {
 		alreadyDone = false;
+	}
+});
+
+bot.on('voiceStateUpdate', function() {
+	console.log('voiceStateUpdated Bitch!!');
+
+	var serverId = bot.channels['397071521857929216'].guild_id;
+	var appyId = '327365815785619457';
+	var appy = bot.servers[serverId].members[appyId];
+
+	if(appy.voice_channel_id != null && alreadyDone != true) {
+		var voiceChannelId = appy.voice_channel_id;
+			googleTTS("randi aagaya ab game throw hoga", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+			.then(function (url) {
+				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+					if(error){
+						console.log(error);
+					}
+					else {
+						bot.getAudioContext(voiceChannelId, function(error, stream) {
+							if(error) {
+								console.log(error);
+							}
+							else {
+								console.log(url);
+								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+								request.get(""+url+"")
+									.on('error', function(err) {
+										console.log(err);
+										bot.leaveVoiceChannel(voiceChannelId, function() {
+										});
+									})
+									.pipe(stream, {end: false});
+
+								stream.on('done', function() {
+									alreadyDoneGagan = true;
+									bot.leaveVoiceChannel(voiceChannelId, function(){
+										console.log('Done!');
+									});
+								});
+							}
+						});
+					}
+				});
+			})
+			.catch(function (err) {
+				console.log(err);
+				bot.leaveVoiceChannel(voiceChannelId, function(){
+					console.log('Done!');
+				});
+			});
+	} else if(appy.voice_channel_id == null) {
+		alreadyDoneGagan = false;
 	}
 });
