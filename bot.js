@@ -408,6 +408,6 @@ bot.on('message', function(user, userId, channelId, message, event) {
 	}
 });
 
-bot.on('voiceStateUpdate' function() {
+bot.on('voiceStateUpdate', function() {
 	console.log('voiceStateUpdated Bitch!!');
 });
