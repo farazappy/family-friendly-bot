@@ -7,6 +7,8 @@ var fs = require('fs');
 var https = require('https');
 var request = require('request');
 
+var alreadyDone = false;
+
 // logger.remove(logger.transports.Console);
 // logger.add(new logger.transports.Console, {
 // 	colorize: true
@@ -415,7 +417,7 @@ bot.on('voiceStateUpdate', function() {
 	var appyId = '240542597540610048';
 	var appy = bot.servers[serverId].members[appyId];
 
-	if(appy.voice_channel_id != null) {
+	if(appy.voice_channel_id != null && alreadyDone != true) {
 		var voiceChannelId = appy.voice_channel_id;
 			googleTTS("appy aagaya bhosdiwalo, salaam karo", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
 			.then(function (url) {
@@ -440,6 +442,7 @@ bot.on('voiceStateUpdate', function() {
 									.pipe(stream, {end: false});
 
 								stream.on('done', function() {
+									alreadyDone = true;
 									bot.leaveVoiceChannel(voiceChannelId, function(){
 										console.log('Done!');
 									});
@@ -455,6 +458,8 @@ bot.on('voiceStateUpdate', function() {
 					console.log('Done!');
 				});
 			});
+	} else {
+		alreadyDone = false;
 	}
 	
 });
