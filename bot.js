@@ -411,6 +411,7 @@ bot.on('message', function(user, userId, channelId, message, event) {
 bot.on('voiceStateUpdate', function() {
 	console.log('voiceStateUpdated Bitch!!');
 
+	var serverId = bot.channels['397071521857929216'].guild_id;
 	var appyId = '240542597540610048';
 	var appy = bot.servers[serverId].members[appyId];
 
