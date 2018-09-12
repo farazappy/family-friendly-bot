@@ -412,111 +412,111 @@ bot.on('message', function(user, userId, channelId, message, event) {
 	}
 });
 
-bot.on('voiceStateUpdate', function() {
-	console.log('voiceStateUpdated Bitch!!');
+// bot.on('voiceStateUpdate', function() {
+// 	console.log('voiceStateUpdated Bitch!!');
 
-	var serverId = bot.channels['397071521857929216'].guild_id;
-	var appyId = '240542597540610048';
-	var appy = bot.servers[serverId].members[appyId];
+// 	var serverId = bot.channels['397071521857929216'].guild_id;
+// 	var appyId = '240542597540610048';
+// 	var appy = bot.servers[serverId].members[appyId];
 
-	if(appy.voice_channel_id != null && alreadyDone != true) {
-		var voiceChannelId = appy.voice_channel_id;
-			googleTTS("appy aagaya bhosdiwalo, salaam karo", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
-			.then(function (url) {
-				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-					if(error){
-						console.log(error);
-					}
-					else {
-						bot.getAudioContext(voiceChannelId, function(error, stream) {
-							if(error) {
-								console.log(error);
-							}
-							else {
-								console.log(url);
-								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-								request.get(""+url+"")
-									.on('error', function(err) {
-										console.log(err);
-										bot.leaveVoiceChannel(voiceChannelId, function() {
-										});
-									})
-									.pipe(stream, {end: false});
+// 	if(appy.voice_channel_id != null && alreadyDone != true) {
+// 		var voiceChannelId = appy.voice_channel_id;
+// 			googleTTS("appy aagaya bhosdiwalo, salaam karo", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+// 			.then(function (url) {
+// 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+// 					if(error){
+// 						console.log(error);
+// 					}
+// 					else {
+// 						bot.getAudioContext(voiceChannelId, function(error, stream) {
+// 							if(error) {
+// 								console.log(error);
+// 							}
+// 							else {
+// 								console.log(url);
+// 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+// 								request.get(""+url+"")
+// 									.on('error', function(err) {
+// 										console.log(err);
+// 										bot.leaveVoiceChannel(voiceChannelId, function() {
+// 										});
+// 									})
+// 									.pipe(stream, {end: false});
 
-								stream.on('done', function() {
-									alreadyDone = true;
-									bot.leaveVoiceChannel(voiceChannelId, function(){
-										console.log('Done!');
-									});
-								});
-							}
-						});
-					}
-				});
-			})
-			.catch(function (err) {
-				console.log(err);
-				bot.leaveVoiceChannel(voiceChannelId, function(){
-					console.log('Done!');
-				});
-			});
-	} else if(appy.voice_channel_id == null) {
-		alreadyDone = false;
-	}
-});
+// 								stream.on('done', function() {
+// 									alreadyDone = true;
+// 									bot.leaveVoiceChannel(voiceChannelId, function(){
+// 										console.log('Done!');
+// 									});
+// 								});
+// 							}
+// 						});
+// 					}
+// 				});
+// 			})
+// 			.catch(function (err) {
+// 				console.log(err);
+// 				bot.leaveVoiceChannel(voiceChannelId, function(){
+// 					console.log('Done!');
+// 				});
+// 			});
+// 	} else if(appy.voice_channel_id == null) {
+// 		alreadyDone = false;
+// 	}
+// });
 
-bot.on('voiceStateUpdate', function() {
-	console.log('voiceStateUpdated Bitch!!');
+// bot.on('voiceStateUpdate', function() {
+// 	console.log('voiceStateUpdated Bitch!!');
 
-	var serverId = bot.channels['397071521857929216'].guild_id;
-	var appyId = '327365815785619457';
-	var appy = bot.servers[serverId].members[appyId];
+// 	var serverId = bot.channels['397071521857929216'].guild_id;
+// 	var appyId = '327365815785619457';
+// 	var appy = bot.servers[serverId].members[appyId];
 
-	if(appy.voice_channel_id != null && alreadyDoneGagan != true) {
-		var voiceChannelId = appy.voice_channel_id;
-			googleTTS("randi aagaya ab game throw hoga", 'en-US', 1)   // speed normal = 1 (default), slow = 0.24
-			.then(function (url) {
-				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-					if(error){
-						console.log(error);
-					}
-					else {
-						bot.getAudioContext(voiceChannelId, function(error, stream) {
-							if(error) {
-								console.log(error);
-							}
-							else {
-								console.log(url);
-								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-								request.get(""+url+"")
-									.on('error', function(err) {
-										console.log(err);
-										bot.leaveVoiceChannel(voiceChannelId, function() {
-										});
-									})
-									.pipe(stream, {end: false});
+// 	if(appy.voice_channel_id != null && alreadyDoneGagan != true) {
+// 		var voiceChannelId = appy.voice_channel_id;
+// 			googleTTS("randi aagaya ab game throw hoga", 'en-US', 1)   // speed normal = 1 (default), slow = 0.24
+// 			.then(function (url) {
+// 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+// 					if(error){
+// 						console.log(error);
+// 					}
+// 					else {
+// 						bot.getAudioContext(voiceChannelId, function(error, stream) {
+// 							if(error) {
+// 								console.log(error);
+// 							}
+// 							else {
+// 								console.log(url);
+// 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+// 								request.get(""+url+"")
+// 									.on('error', function(err) {
+// 										console.log(err);
+// 										bot.leaveVoiceChannel(voiceChannelId, function() {
+// 										});
+// 									})
+// 									.pipe(stream, {end: false});
 
-								stream.on('done', function() {
-									alreadyDoneGagan = true;
-									bot.leaveVoiceChannel(voiceChannelId, function(){
-										console.log('Done!');
-									});
-								});
-							}
-						});
-					}
-				});
-			})
-			.catch(function (err) {
-				console.log(err);
-				bot.leaveVoiceChannel(voiceChannelId, function(){
-					console.log('Done!');
-				});
-			});
-	} else if(appy.voice_channel_id == null) {
-		alreadyDoneGagan = false;
-	}
-});
+// 								stream.on('done', function() {
+// 									alreadyDoneGagan = true;
+// 									bot.leaveVoiceChannel(voiceChannelId, function(){
+// 										console.log('Done!');
+// 									});
+// 								});
+// 							}
+// 						});
+// 					}
+// 				});
+// 			})
+// 			.catch(function (err) {
+// 				console.log(err);
+// 				bot.leaveVoiceChannel(voiceChannelId, function(){
+// 					console.log('Done!');
+// 				});
+// 			});
+// 	} else if(appy.voice_channel_id == null) {
+// 		alreadyDoneGagan = false;
+// 	}
+// });
 
 // bot.on('voiceStateUpdate', function() {
 // 	console.log('voiceStateUpdated Bitch!!');
