@@ -474,7 +474,7 @@ bot.on('voiceStateUpdate', function() {
 
 	if(appy.voice_channel_id != null && alreadyDoneGagan != true) {
 		var voiceChannelId = appy.voice_channel_id;
-			googleTTS("randi aagaya ab game throw hoga", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+			googleTTS("randi aagaya ab game throw hoga", 'en-US', 1)   // speed normal = 1 (default), slow = 0.24
 			.then(function (url) {
 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
 					if(error){
