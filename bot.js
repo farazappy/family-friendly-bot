@@ -518,55 +518,55 @@ bot.on('voiceStateUpdate', function() {
 	}
 });
 
-bot.on('voiceStateUpdate', function() {
-	console.log('voiceStateUpdated Bitch!!');
+// bot.on('voiceStateUpdate', function() {
+// 	console.log('voiceStateUpdated Bitch!!');
 
-	var serverId = bot.channels['397071521857929216'].guild_id;
-	var appyId = '202035944260370441';
-	var appy = bot.servers[serverId].members[appyId];
+// 	var serverId = bot.channels['397071521857929216'].guild_id;
+// 	var appyId = '202035944260370441';
+// 	var appy = bot.servers[serverId].members[appyId];
 
-	if(appy.voice_channel_id != null && alreadyDoneRaj != true) {
-		var voiceChannelId = appy.voice_channel_id;
-			googleTTS("Hello guys, My name is Raj Roongta, me sabki gaand soongta", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
-			.then(function (url) {
-				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-					if(error){
-						console.log(error);
-					}
-					else {
-						bot.getAudioContext(voiceChannelId, function(error, stream) {
-							if(error) {
-								console.log(error);
-							}
-							else {
-								console.log(url);
-								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-								request.get(""+url+"")
-									.on('error', function(err) {
-										console.log(err);
-										bot.leaveVoiceChannel(voiceChannelId, function() {
-										});
-									})
-									.pipe(stream, {end: false});
+// 	if(appy.voice_channel_id != null && alreadyDoneRaj != true) {
+// 		var voiceChannelId = appy.voice_channel_id;
+// 			googleTTS("Hello guys, My name is Raj Roongta, me sabki gaand soongta", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
+// 			.then(function (url) {
+// 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+// 					if(error){
+// 						console.log(error);
+// 					}
+// 					else {
+// 						bot.getAudioContext(voiceChannelId, function(error, stream) {
+// 							if(error) {
+// 								console.log(error);
+// 							}
+// 							else {
+// 								console.log(url);
+// 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+// 								request.get(""+url+"")
+// 									.on('error', function(err) {
+// 										console.log(err);
+// 										bot.leaveVoiceChannel(voiceChannelId, function() {
+// 										});
+// 									})
+// 									.pipe(stream, {end: false});
 
-								stream.on('done', function() {
-									alreadyDoneRaj = true;
-									bot.leaveVoiceChannel(voiceChannelId, function(){
-										console.log('Done!');
-									});
-								});
-							}
-						});
-					}
-				});
-			})
-			.catch(function (err) {
-				console.log(err);
-				bot.leaveVoiceChannel(voiceChannelId, function(){
-					console.log('Done!');
-				});
-			});
-	} else if(appy.voice_channel_id == null) {
-		alreadyDoneRaj = false;
-	}
-});
+// 								stream.on('done', function() {
+// 									alreadyDoneRaj = true;
+// 									bot.leaveVoiceChannel(voiceChannelId, function(){
+// 										console.log('Done!');
+// 									});
+// 								});
+// 							}
+// 						});
+// 					}
+// 				});
+// 			})
+// 			.catch(function (err) {
+// 				console.log(err);
+// 				bot.leaveVoiceChannel(voiceChannelId, function(){
+// 					console.log('Done!');
+// 				});
+// 			});
+// 	} else if(appy.voice_channel_id == null) {
+// 		alreadyDoneRaj = false;
+// 	}
+// });
