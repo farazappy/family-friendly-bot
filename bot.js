@@ -230,6 +230,34 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						});
 					}
 					break;
+				case 'denzilmoiz':
+					if(!voiceChannelId)
+						bot.sendMessage({
+							to: channelId,
+							message: user + ' behenchod pehle voice channel join kar!'
+						});
+					else {
+						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+							if(error)
+								console.log(error);
+							else {
+								bot.getAudioContext(voiceChannelId, function(error, stream) {
+									if(error)
+										console.log(error);
+									else {
+										fs.createReadStream('denzil_moiz.ogg').pipe(stream, {end: false});
+
+										stream.on('done', function() {
+											bot.leaveVoiceChannel(voiceChannelId, function(){
+												console.log('Done!');
+											});
+										})
+									}
+								});
+							}
+						});
+					}
+					break;
 				case 'hypocrisy':
 					if(!voiceChannelId)
 						bot.sendMessage({
