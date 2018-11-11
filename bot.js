@@ -258,6 +258,34 @@ bot.on('message', function(user, userId, channelId, message, event) {
 						});
 					}
 					break;
+				case 'alexa':
+					if(!voiceChannelId)
+						bot.sendMessage({
+							to: channelId,
+							message: user + ' behenchod pehle voice channel join kar!'
+						});
+					else {
+						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
+							if(error)
+								console.log(error);
+							else {
+								bot.getAudioContext(voiceChannelId, function(error, stream) {
+									if(error)
+										console.log(error);
+									else {
+										fs.createReadStream('hey_alexa.mp3').pipe(stream, {end: false});
+
+										stream.on('done', function() {
+											bot.leaveVoiceChannel(voiceChannelId, function(){
+												console.log('Done!');
+											});
+										})
+									}
+								});
+							}
+						});
+					}
+					break;
 				case 'hypocrisy':
 					if(!voiceChannelId)
 						bot.sendMessage({
