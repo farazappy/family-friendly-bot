@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "family-friendly-bot",
+  "private_key_id": "e0b20dc6480518bd0472a3e4f43569dba431d6f7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCyNFZ24jSrw+fy\nTyRpa5qqd124nxf2Tkuljx3Ezm6pdIRe3PWC4/2zImo7Epcn09jbGQwysB2GCOtm\n+GDFaim8JO8MLCwEJ90VJ/F9FYedgEMBJkeGnqwioFf8E6rYAyQxNJvaFKJt5FyL\n93D3Xkl/5fFIlCXR4ychAy7Porbsj+2jReNIQAdcbcSHOoYRLHL7rYE8AbpVY5jj\nh8B9xd9i/bRNqySdc7e0RPXfOThQtkqUmWmsq7IOwuJK0mL9ocxWXs9n+UlsLcTd\nw318XS/dVycQ0QVWj0b6vnBCJf7fk+7qSUJIMrDX+oQ3Rhdwf+2R7yPCuxx3qMk4\n7CS7PLnjAgMBAAECggEAS4wboc+5I55sbRG3LogDLERpc5TivDUqJbhcFuyrBmTS\nn0LORFyyV6h936g8c5KAizX9sVlvUrziSyd+IwMkSVJhE0iAqoxZ0he6bVxcv106\nSrj3Nq966z0Nv9x4n5YJWGDkt5nq2Gqo/195wSz0POf3F91SgT3q/zhRto3VPcj7\nbqBGs/rSMj9see8FiOUfA6x2ad2pVebpsztAE31ymL/oItiyV7S58WYDvwAlgoD0\nvvzgHNbXTqdOpyIXJHOQxYDiDVCjo20Ni9WXty2mp1MZrKXtrvH2c2+JH7aFfaEi\nz4mJGEfPGGZ0INuU6EyZNUgTEycLuswwLa7PfIwm9QKBgQDdb+nSLlAwb5gAGk8z\nBooQX2UdJN70Wv71qimYf3bcHcCUdhm5t6CklF3McIvBWTcvQB3FbNPMHV1B3rSz\nm/zrq4duefDXhxFiMU4PHmKE0n39TYrWd+3ibp0Acqg/2UmwWbHZoXMNQQTYK/Z8\nJqK9szoOpmzIixRbAFKszxZVRQKBgQDOBPNtrXo6qG7bhsreNR59oygeJv4bzDNW\nK3pd8cET9JQXvZOb2TuZHWy98MNmFvs9z0hlfXtEes0crM9/DGg26lIJR2KN/PgS\nqy06nRVLOHXagpAEaYgcN7YM6vm73ziXOdU3POJRQ61zn5UVRUCWsiGsBriH2NgN\nlbQXTgChBwKBgCJaNUT1CF2rQkJp0nWRAyQtGGugB7KS11DXOCK/S3o0Z2bgt3b3\nRMWjerW3lAbHx2beJIA3NNhKiegpG5Ftlpwc/SKnajSVcJ3yFjEEPrZqTT9ZoztI\nWbAyBstF/lIBbIweLhgcEtQwjQbYMyHpgH+7aTtSmDe4U80WTL0gV0+dAoGBALhr\ngiWKB0J/CE2HSg7D6jl5Vi43pXzovIPEg9OY18evRupBj+MRAOK9jlwxLBk1NU5N\nQXdobnIMo5Optkz6pEeUVj9sIXMNIlxD00cG2srtDcK+4YCxn1/zFwpVRZzB43ys\nDotV+xnXxWsdTW0vAvRjHPVLRuCEYlM20XGTJ8j9AoGBAL98Je3BAOAW2DDAcI55\nPi/cuPCjrbqP7PoI0FL5m4iu3OyuiN89ChycN3pty4w+0m9sSxLB4LS/I+35XQl7\nJVxOa78Is5ln10ATvsjDTe5xhq8n1aLViSM5kQK04AilbXdb9SAM0z3KiDoWa79A\nNy9x3sZPoH0HjI2MHbtnErUp\n-----END PRIVATE KEY-----\n",
+  "client_email": "thesaltyappy@family-friendly-bot.iam.gserviceaccount.com",
+  "client_id": "102861341117673627347",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/thesaltyappy%40family-friendly-bot.iam.gserviceaccount.com"
+}
