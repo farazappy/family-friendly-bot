@@ -46,6 +46,11 @@ bot.on('message', function(user, userId, channelId, message, event) {
 				to: channelId,
 				message: user + ' sorry I don\'t serve Christians'
 			});
+		} else if(userId == '287479791139946496') {
+			bot.sendMessage({
+				to: channelId,
+				message: 'Eww, I\'m not serving you.'
+			});
 		} else {
 
 			switch(cmd) {
