@@ -1,4 +1,4 @@
-var Discord = require ('discord.io');
+var Discord = require('discord.io');
 //var logger= require('winston');
 var auth = require('./auth.json');
 var googleTTS = require('google-tts-api');
@@ -28,12 +28,12 @@ bot.on('ready', function (event) {
 	console.log('Logged in as: ');
 	console.log(bot.username + ' - (' + bot.id + ')');
 });
- 
-bot.on('message', function(user, userId, channelId, message, event) {
+
+bot.on('message', function (user, userId, channelId, message, event) {
 
 	var serverId = bot.channels[channelId].guild_id;
 
-	if(message.substring(0,1) == '!') {
+	if (message.substring(0, 1) == '!') {
 		var args = message.substring(1).split(' ');
 		var cmd = args[0];
 
@@ -41,19 +41,19 @@ bot.on('message', function(user, userId, channelId, message, event) {
 
 		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
 
-		if(userId == '283941878334750721') {
+		if (userId == '283941878334750721') {
 			bot.sendMessage({
 				to: channelId,
 				message: user + ' sorry I don\'t serve Christians'
 			});
-		} else if(userId == '12345') {
+		} else if (userId == '12345') {
 			bot.sendMessage({
 				to: channelId,
 				message: 'Eww, I\'m not serving you.'
 			});
 		} else {
 
-			switch(cmd) {
+			switch (cmd) {
 				case 'ping':
 					bot.sendMessage({
 						to: channelId,
@@ -68,24 +68,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					break;
 				case 'meepo':
 
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('meepo_laugh.mp3').pipe(stream, {end: false});
+										fs.createReadStream('meepo_laugh.mp3').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -96,24 +96,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'jhola':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('jhola.wma').pipe(stream, {end: false});
+										fs.createReadStream('jhola.wma').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -124,24 +124,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'pmgm':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('Modi_GM.mp3').pipe(stream, {end: false});
+										fs.createReadStream('Modi_GM.mp3').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -152,24 +152,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'achha':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('achha_kiya.wma').pipe(stream, {end: false});
+										fs.createReadStream('achha_kiya.wma').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -180,24 +180,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'waah':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('waah_modi.wma').pipe(stream, {end: false});
+										fs.createReadStream('waah_modi.wma').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -208,24 +208,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'aslimeme':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('lul_audio.mp3').pipe(stream, {end: false});
+										fs.createReadStream('lul_audio.mp3').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -236,24 +236,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'denzilmoiz':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('denzil_moiz.ogg').pipe(stream, {end: false});
+										fs.createReadStream('denzil_moiz.ogg').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -264,24 +264,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'alexa':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('hey_alexa.mp3').pipe(stream, {end: false});
+										fs.createReadStream('hey_alexa.mp3').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -292,24 +292,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'hypocrisy':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('hipocrisy.wma').pipe(stream, {end: false});
+										fs.createReadStream('hipocrisy.wma').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -320,24 +320,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'gunehgaar':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('gunehgaar.wma').pipe(stream, {end: false});
+										fs.createReadStream('gunehgaar.wma').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										})
@@ -348,24 +348,24 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					}
 					break;
 				case 'thankyou':
-					if(!voiceChannelId)
+					if (!voiceChannelId)
 						bot.sendMessage({
 							to: channelId,
 							message: user + ' behenchod pehle voice channel join kar!'
 						});
 					else {
-						bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-							if(error)
+						bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+							if (error)
 								console.log(error);
 							else {
-								bot.getAudioContext(voiceChannelId, function(error, stream) {
-									if(error)
+								bot.getAudioContext(voiceChannelId, function (error, stream) {
+									if (error)
 										console.log(error);
 									else {
-										fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+										fs.createReadStream('big_thank.wma').pipe(stream, { end: false });
 
-										stream.on('done', function() {
-											bot.leaveVoiceChannel(voiceChannelId, function(){
+										stream.on('done', function () {
+											bot.leaveVoiceChannel(voiceChannelId, function () {
 												console.log('Done!');
 											});
 										});
@@ -389,11 +389,11 @@ bot.on('message', function(user, userId, channelId, message, event) {
 					break;
 			}
 		}
-	} else if(message.substring(0,1) == '_') {
+	} else if (message.substring(0, 1) == '_') {
 
 		var voiceChannelId = bot.servers[serverId].members[userId].voice_channel_id;
 
-		if(!voiceChannelId)
+		if (!voiceChannelId)
 			bot.sendMessage({
 				to: channelId,
 				message: user + ' behenchod pehle voice channel join kar!'
@@ -404,230 +404,71 @@ bot.on('message', function(user, userId, channelId, message, event) {
 			var cmd = args[0];
 			var tts = "";
 
-			args.forEach(function(ele) {
-				if(ele==cmd)
+			args.forEach(function (ele) {
+				if (ele == cmd)
 					return;
-				tts += ele+' ';
+				tts += ele + ' ';
 			});
 
 			googleTTS(tts, 'ja-JP', 1)   // speed normal = 1 (default), slow = 0.24
-			.then(function (url) {
-				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-					if(error){
-						console.log(error);
+				.then(function (url) {
+					bot.joinVoiceChannel(voiceChannelId, function (error, event) {
+						if (error) {
+							console.log(error);
+							bot.sendMessage({
+								to: channelId,
+								message: "Something went wrong!"
+							});
+						}
+						else {
+							bot.getAudioContext(voiceChannelId, function (error, stream) {
+								if (error) {
+									console.log(error);
+									bot.sendMessage({
+										to: channelId,
+										message: "Something went wrong! | " + error
+									});
+								}
+								else {
+									console.log(url);
+									//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
+									request.get("" + url + "")
+										.on('error', function (err) {
+											console.log(err);
+											bot.leaveVoiceChannel(voiceChannelId, function () {
+												bot.sendMessage({
+													to: channelId,
+													message: "Something went wrong!"
+												});
+											});
+										})
+										.pipe(stream, { end: false });
+
+									stream.on('done', function () {
+										bot.leaveVoiceChannel(voiceChannelId, function () {
+											console.log('Done!');
+										});
+									});
+								}
+							});
+						}
+					});
+				})
+				.catch(function (err) {
+					console.log(err);
+					bot.leaveVoiceChannel(voiceChannelId, function () {
+						console.log('Done!');
 						bot.sendMessage({
 							to: channelId,
 							message: "Something went wrong!"
 						});
-					}
-					else {
-						bot.getAudioContext(voiceChannelId, function(error, stream) {
-							if(error) {
-								console.log(error);
-								bot.sendMessage({
-									to: channelId,
-									message: "Something went wrong! | " + error
-								});
-							}
-							else {
-								console.log(url);
-								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-								request.get(""+url+"")
-									.on('error', function(err) {
-										console.log(err);
-										bot.leaveVoiceChannel(voiceChannelId, function() {
-											bot.sendMessage({
-												to: channelId,
-												message: "Something went wrong!"
-											});
-										});
-									})
-									.pipe(stream, {end: false});
-
-								stream.on('done', function() {
-									bot.leaveVoiceChannel(voiceChannelId, function(){
-										console.log('Done!');
-									});
-								});
-							}
-						});
-					}
-				});
-			})
-			.catch(function (err) {
-				console.log(err);
-				bot.leaveVoiceChannel(voiceChannelId, function(){
-					console.log('Done!');
+					});
 					bot.sendMessage({
 						to: channelId,
 						message: "Something went wrong!"
 					});
 				});
-				bot.sendMessage({
-					to: channelId,
-					message: "Something went wrong!"
-				});
-			});
 
 		}
 	}
 });
-
-// bot.on('voiceStateUpdate', function() {
-// 	console.log('voiceStateUpdated Bitch!!');
-
-// 	var serverId = bot.channels['397071521857929216'].guild_id;
-// 	var appyId = '240542597540610048';
-// 	var appy = bot.servers[serverId].members[appyId];
-
-// 	if(appy.voice_channel_id != null && alreadyDone != true) {
-// 		var voiceChannelId = appy.voice_channel_id;
-// 			googleTTS("appy aagaya bhosdiwalo, salaam karo", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
-// 			.then(function (url) {
-// 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-// 					if(error){
-// 						console.log(error);
-// 					}
-// 					else {
-// 						bot.getAudioContext(voiceChannelId, function(error, stream) {
-// 							if(error) {
-// 								console.log(error);
-// 							}
-// 							else {
-// 								console.log(url);
-// 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-// 								request.get(""+url+"")
-// 									.on('error', function(err) {
-// 										console.log(err);
-// 										bot.leaveVoiceChannel(voiceChannelId, function() {
-// 										});
-// 									})
-// 									.pipe(stream, {end: false});
-
-// 								stream.on('done', function() {
-// 									alreadyDone = true;
-// 									bot.leaveVoiceChannel(voiceChannelId, function(){
-// 										console.log('Done!');
-// 									});
-// 								});
-// 							}
-// 						});
-// 					}
-// 				});
-// 			})
-// 			.catch(function (err) {
-// 				console.log(err);
-// 				bot.leaveVoiceChannel(voiceChannelId, function(){
-// 					console.log('Done!');
-// 				});
-// 			});
-// 	} else if(appy.voice_channel_id == null) {
-// 		alreadyDone = false;
-// 	}
-// });
-
-// bot.on('voiceStateUpdate', function() {
-// 	console.log('voiceStateUpdated Bitch!!');
-
-// 	var serverId = bot.channels['397071521857929216'].guild_id;
-// 	var appyId = '327365815785619457';
-// 	var appy = bot.servers[serverId].members[appyId];
-
-// 	if(appy.voice_channel_id != null && alreadyDoneGagan != true) {
-// 		var voiceChannelId = appy.voice_channel_id;
-// 			googleTTS("randi aagaya ab game throw hoga", 'en-US', 1)   // speed normal = 1 (default), slow = 0.24
-// 			.then(function (url) {
-// 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-// 					if(error){
-// 						console.log(error);
-// 					}
-// 					else {
-// 						bot.getAudioContext(voiceChannelId, function(error, stream) {
-// 							if(error) {
-// 								console.log(error);
-// 							}
-// 							else {
-// 								console.log(url);
-// 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-// 								request.get(""+url+"")
-// 									.on('error', function(err) {
-// 										console.log(err);
-// 										bot.leaveVoiceChannel(voiceChannelId, function() {
-// 										});
-// 									})
-// 									.pipe(stream, {end: false});
-
-// 								stream.on('done', function() {
-// 									alreadyDoneGagan = true;
-// 									bot.leaveVoiceChannel(voiceChannelId, function(){
-// 										console.log('Done!');
-// 									});
-// 								});
-// 							}
-// 						});
-// 					}
-// 				});
-// 			})
-// 			.catch(function (err) {
-// 				console.log(err);
-// 				bot.leaveVoiceChannel(voiceChannelId, function(){
-// 					console.log('Done!');
-// 				});
-// 			});
-// 	} else if(appy.voice_channel_id == null) {
-// 		alreadyDoneGagan = false;
-// 	}
-// });
-
-// bot.on('voiceStateUpdate', function() {
-// 	console.log('voiceStateUpdated Bitch!!');
-
-// 	var serverId = bot.channels['397071521857929216'].guild_id;
-// 	var appyId = '202035944260370441';
-// 	var appy = bot.servers[serverId].members[appyId];
-
-// 	if(appy.voice_channel_id != null && alreadyDoneRaj != true) {
-// 		var voiceChannelId = appy.voice_channel_id;
-// 			googleTTS("Hello guys, My name is Raj Roongta, me sabki gaand soongta", 'hi-IN', 1)   // speed normal = 1 (default), slow = 0.24
-// 			.then(function (url) {
-// 				bot.joinVoiceChannel(voiceChannelId, function(error, event) {
-// 					if(error){
-// 						console.log(error);
-// 					}
-// 					else {
-// 						bot.getAudioContext(voiceChannelId, function(error, stream) {
-// 							if(error) {
-// 								console.log(error);
-// 							}
-// 							else {
-// 								console.log(url);
-// 								//fs.createReadStream('big_thank.wma').pipe(stream, {end: false});
-// 								request.get(""+url+"")
-// 									.on('error', function(err) {
-// 										console.log(err);
-// 										bot.leaveVoiceChannel(voiceChannelId, function() {
-// 										});
-// 									})
-// 									.pipe(stream, {end: false});
-
-// 								stream.on('done', function() {
-// 									alreadyDoneRaj = true;
-// 									bot.leaveVoiceChannel(voiceChannelId, function(){
-// 										console.log('Done!');
-// 									});
-// 								});
-// 							}
-// 						});
-// 					}
-// 				});
-// 			})
-// 			.catch(function (err) {
-// 				console.log(err);
-// 				bot.leaveVoiceChannel(voiceChannelId, function(){
-// 					console.log('Done!');
-// 				});
-// 			});
-// 	} else if(appy.voice_channel_id == null) {
-// 		alreadyDoneRaj = false;
-// 	}
-// });
